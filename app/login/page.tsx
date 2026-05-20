@@ -15,10 +15,10 @@ export default function Home() {
   return (
     <>
       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-      <main className="grow flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+      <main className="grow flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4 md:px-6 relative z-[5]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full items-center min-h-screen">
           {/* Left: Hero Text & Actions */}
-          <div className="flex flex-col gap-6 relative z-20">
+          <div className="flex flex-col gap-6 relative z-[10]">
             <div className="flex items-center gap-2 mb-4">
               <span className="font-heading text-[32px] font-bold italic text-primary tracking-widest uppercase">ZACS</span>
               <div className="h-1 w-12 bg-secondary ml-2"></div>
@@ -56,8 +56,8 @@ export default function Home() {
                 {!session ? (
                   <div className="flex flex-col gap-4">
                     <button
-                      onClick={() => signIn("google")}
-                      className="bg-white text-gray-900 px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors"
+                      onClick={() => signIn("google", {callbackUrl: "/dashboard",})}
+                      className="bg-white text-gray-900 px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors hover:cursor-pointer"
                     >
                       <svg className="w-5 h-5" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -97,7 +97,7 @@ export default function Home() {
                       />
                       <button
                         type="submit"
-                        className="bg-primary text-on-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                        className="bg-primary text-on-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors hover:cursor-pointer"
                       >
                         Sign in with Credentials
                       </button>
@@ -117,7 +117,7 @@ export default function Home() {
                 <p className="">Not Registered?</p> 
                 <button
                   onClick={() => setOpenSignup(true)}
-                  className="text-blue-500 hover:text-blue-400"
+                  className="text-blue-500 hover:text-blue-400 hover:cursor-pointer"
                 >
                   Signup
                 </button>

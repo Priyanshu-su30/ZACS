@@ -1,5 +1,5 @@
 
-import { CirclePlus } from 'lucide-react';
+import { Bell, CirclePlus } from 'lucide-react';
 
 export default function Dashboard() {
   return (
@@ -7,9 +7,8 @@ export default function Dashboard() {
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-black/80 backdrop-blur-xl border-b border-white/10 hidden md:flex">
         <div className="text-2xl font-black italic text-violet-600 dark:text-violet-500 tracking-widest font-headline-lg uppercase font-black">ZACS</div>
         <div className="flex items-center gap-4">
-        <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95">notifications</button>
-        <CirclePlus/>
-        <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95">add_circle</button>
+        <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95"><Bell/></button>
+        <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95"><CirclePlus/></button>
         <img alt="User Profile Avatar" className="w-8 h-8 rounded-full border border-white/20 ml-2 object-cover" data-alt="close up portrait of a young woman with neon purple and cyan rim lighting looking confidently at camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeox43Lq4rHC3ctnuFmdSRfmoX-Esb4yAR-nDeSNPU50jdI0mTtu2dMGAYsEIg90fJ2FwGug4gpimlxehIRcmN3FRsf4wkNUgmS-2As2WkgQPpnoGssRe6x-kksDl3JChz6jbhbzLJM_UKXqTLyEGcqQpVIJKXCyWB4Ru6-LLbtQhIta3H1PCcEDSqDP0DZw4X_pHMUWTJVihV_reoAYXr1eF7ouIGXJ3UXPSebFJidrBTHLAizXBmqx-NJ7wrleMD8sqntFDAB6I"/>
         </div>
       </header>
