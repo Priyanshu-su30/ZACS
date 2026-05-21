@@ -1,13 +1,12 @@
-import NextAuth from "next-auth";
+import NextAuth, { type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
-
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -17,7 +16,7 @@ const handler = NextAuth({
       name: "credentials",
       credentials: {
         username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials?.username || !credentials?.password) {
@@ -26,15 +25,18 @@ const handler = NextAuth({
 
         const user = await prisma.user.findUnique({
           where: {
-            username: credentials.username
-          }
+            username: credentials.username,
+          },
         });
 
         if (!user || !user.passwords) {
           return null;
         }
 
-        const isPasswordValid = await bcrypt.compare(credentials.password, user.passwords);
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password,
+          user.passwords
+        );
 
         if (!isPasswordValid) {
           return null;
@@ -45,66 +47,78 @@ const handler = NextAuth({
           email: user.email,
           name: user.name,
           username: user.username,
+          movie: user.movie,
+          series: user.series,
+          level: user.level,
+          XP: user.XP,
+          rank: user.rank,
+          watches: user.watches,
+          followers: user.followers,
+          following: user.following,
+          trophy: user.trophy,
         };
-      }
+      },
     }),
   ],
-
   callbacks: {
-    // 🔥 THIS runs after Google login
-    async signIn({ user, account, profile }) {
-      console.log("USER:", user);         // basic user info
-      console.log("ACCOUNT:", account);   // provider details
-      console.log("PROFILE:", profile);   // 🔥 Google profile data
-      if (account?.provider === "google") {
-
+    async signIn({ user, account }) {
+      if (account?.provider === "google" && user.email) {
         await prisma.user.upsert({
           where: {
-            email: user.email!,
+            email: user.email,
           },
           update: {
-            name: user.name, // update existing user name
+            name: user.name,
           },
           create: {
-            email: user.email!,
+            email: user.email,
             name: user.name,
           },
         });
       }
-      return true; // allow login
-    },
 
-    // Add extra data to session
-    async session({ session, user }) {
-        if (session.user) {
-          const customUser = user as any;
-          session.user.id = customUser.id;
-          session.user.username = customUser.username;
-          session.user.movie = customUser.movie;
-          session.user.series = customUser.series;
-          session.user.level = customUser.level;
-          session.user.XP = customUser.XP;
-          session.user.rank = customUser.rank;
-          session.user.watches = customUser.watches;
-          session.user.followers = customUser.followers;
-          session.user.following = customUser.following;
-          session.user.trophy = customUser.trophy;
-        }
-        return session;
+      return true;
     },
-
-    // Modify JWT token
-    async jwt({ token, account }) {
-      if (account) {
-        token.accessToken = account.access_token;
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.username = (user as { username?: string | null }).username;
+        token.movie = (user as { movie?: string | null }).movie;
+        token.series = (user as { series?: string | null }).series;
+        token.level = (user as { level?: number | null }).level;
+        token.XP = (user as { XP?: number | null }).XP;
+        token.rank = (user as { rank?: string | null }).rank;
+        token.watches = (user as { watches?: number | null }).watches;
+        token.followers = (user as { followers?: number | null }).followers;
+        token.following = (user as { following?: number | null }).following;
+        token.trophy = (user as { trophy?: string | null }).trophy;
       }
+
       return token;
     },
-  },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.username = token.username as string;
+        session.user.movie = token.movie as string;
+        session.user.series = token.series as string;
+        session.user.level = token.level as number;
+        session.user.XP = token.XP as number;
+        session.user.rank = token.rank as string;
+        session.user.watches = token.watches as number;
+        session.user.followers = token.followers as number;
+        session.user.following = token.following as number;
+        session.user.trophy = token.trophy as string;
+      }
 
-  session: {
-    strategy: "database",
+      return session;
+    },
   },
-});
+  session: {
+    strategy: "jwt",
+  },
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

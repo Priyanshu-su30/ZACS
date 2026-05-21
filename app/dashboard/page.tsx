@@ -1,20 +1,31 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
+import { Bell, CirclePlus, CircleUser } from 'lucide-react';
 
-import { Bell, CirclePlus } from 'lucide-react';
+export default async function Dashboard() {
 
-export default function Dashboard() {
+  const session = await getServerSession(authOptions);
+
+  // Not logged in
+  if (!session) {
+    redirect("/login");
+  }
+
+
   return (
     <main className="max-w-[1440px] mx-auto pb-24 md:pb-0 pt-20 px-4 md:px-6">
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-black/80 backdrop-blur-xl border-b border-white/10 hidden md:flex">
-        <div className="text-2xl font-black italic text-violet-600 dark:text-violet-500 tracking-widest font-headline-lg uppercase font-black">ZACS</div>
-        <div className="flex items-center gap-4">
-        <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95"><Bell/></button>
-        <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95"><CirclePlus/></button>
-        <img alt="User Profile Avatar" className="w-8 h-8 rounded-full border border-white/20 ml-2 object-cover" data-alt="close up portrait of a young woman with neon purple and cyan rim lighting looking confidently at camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeox43Lq4rHC3ctnuFmdSRfmoX-Esb4yAR-nDeSNPU50jdI0mTtu2dMGAYsEIg90fJ2FwGug4gpimlxehIRcmN3FRsf4wkNUgmS-2As2WkgQPpnoGssRe6x-kksDl3JChz6jbhbzLJM_UKXqTLyEGcqQpVIJKXCyWB4Ru6-LLbtQhIta3H1PCcEDSqDP0DZw4X_pHMUWTJVihV_reoAYXr1eF7ouIGXJ3UXPSebFJidrBTHLAizXBmqx-NJ7wrleMD8sqntFDAB6I"/>
+        <div className="text-2xl font-black italic text-violet-600 dark:text-violet-500 tracking-widest font-headline-lg uppercase ">ZACS</div>
+          <div className="flex items-center gap-4">
+          <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95 cursor-pointer"><Bell/></button>
+          <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95 cursor-pointer"><CirclePlus/></button>
+          <button><CircleUser/></button>
         </div>
       </header>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
         {/* Grid 1: XP Progress */}
-        <section className="bg-[rgba(30,31,38,0.6)] backdrop-blur-[20px] border border-[rgba(226,225,235,0.1)] rounded-xl p-6 flex flex-col relative overflow-hidden col-span-1 md:col-span-12">
+        <section className="w-[1440px] bg-[rgba(30,31,38,0.6)] backdrop-blur-[20px] border border-[rgba(226,225,235,0.1)] rounded-xl p-6 flex flex-col relative overflow-hidden col-span-1 md:col-span-12">
           <div className="absolute -top-24 -right-24 w-48 h-48 bg-[rgba(208,188,255,0.2)] rounded-full blur-[60px] pointer-events-none"></div>
           <div className="flex justify-between items-end mb-6 z-10">
             <div>
