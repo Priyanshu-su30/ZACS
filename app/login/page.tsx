@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import SignupModal from "@/components/SignupModal";
 import { useState } from "react";
+import PixelSnow from '../../components/pixelsnow';
 
 export default function Home() {
 
@@ -14,6 +15,21 @@ export default function Home() {
 
   return (
     <>
+    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <PixelSnow 
+        color="#ffffff"
+        flakeSize={0.01}
+        minFlakeSize={1.25}
+        pixelResolution={200}
+        speed={1.25}
+        density={0.3}
+        direction={125}
+        brightness={1}
+        depthFade={8}
+        farPlane={20}
+        gamma={0.4545}
+        variant="square"
+    />
       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       <main className="grow flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4 md:px-6 relative z-[5]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full items-center min-h-screen">
@@ -160,6 +176,8 @@ export default function Home() {
           <span><span className="text-primary">• LEADERBOARD:</span> User_Zero just hit Grandmaster rank</span>
         </div>
       </div> */}
+      
+</div>
     </>
   );
 }
