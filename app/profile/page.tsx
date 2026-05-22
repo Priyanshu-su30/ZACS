@@ -1,5 +1,6 @@
 "use client"
-import { BadgeCheck } from "lucide-react";
+import Image from "next/image";
+import { BadgeCheck, Swords } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 export default function Profile() {
@@ -11,11 +12,8 @@ export default function Profile() {
       {/* Profile Header Bento */}
       <div className="relative w-full border border-[rgba(255,255,255,0.1)] rounded-lg overflow-hidden bg-surface-container flex flex-col md:flex-row shadow-[4px_4px_0_var(--color-surface-container-lowest)] mt-3">
         <div className="absolute inset-0 z-0 opacity-40 mix-blend-luminosity">
-          <div className="w-full h-full grid grid-cols-4 md:grid-cols-8 gap-1 p-1">
-            <img alt="Banner 1" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIHDmZUbtakT-TGcw21NRiSzMj0W72Q4SlOfRXT1HQ6Pz3peS8U8yT9OQVQJd3B0NFhY6L5oMvLRlvLq4YDbS4xe1RHFrDMn9cx5Pe4KCPoMl6VX2Nu9kAk583zSPvLAbG3ev_-UT0dP339c4wRuyXTUmfaWG5i3Oktqk7Q0hqniOUzMl3-xeZJtuP1v16pAKYCv7xkpws_QK_aeBmR9HfS3Fx3iKQCQJnWmpcqRqzm8nUcs9pnD1nwjL4pp_SYisP1Rq7UOu-AQg" />
-            <img alt="Banner 2" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuActTDWJkPqSskxKKgJG4EMkoWZBkcoWrll8Do24HA_-4GwRUSORS2JHAwO45PHLa9CckcLHzDOF7aVTpPLBFHqHizga6yGGc-xdNbJQs6qX-lq1BJVWHg3DuS4G-JhjngFjY775kOhECATY1lIbV0hU71xsXl3UOQjHsZiiDR1a0TFtYmTs_g47GF2XyUE9IfM3ctKfL_Krkx5zdz3YTTB72IQE1RSt-1rX_-ZryAF8oafz2GHDjXgUtVnUb9Zn83mCLLyRJoHxzk" />
-            <img alt="Banner 3" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Dn5XdiX1P98-0yRQrPn1dx3Bko_jtaESIByP-jIY-Cl9_2uvRxP_cp9D8pzlLsb_z-V76iZzmAV5YYJfmMi0jajZLxg5R4o_7n_rUf5QvRwIPFam40O-FfHwop2GIwzEiksEczffgyxg1p5aFxtkuBOnrZAxDFtVJxj260JIazTAFe3LCPHmCDnSMVIyP7mGjoxzI8VgDMZ_418rc6knLbaO_mRBec-lNMm_SBneCbIyoiCwUWYiwknTgWlRmbbEmxEyT_kYl_s" />
-            <img alt="Banner 4" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_SZve5_bFJnEWMqrmc4Kkv1jxNzhHqD-W8MJVt3SaTfPKyBvW_83WSbM71jjHoUSFIY4pIbWCOx9RGOBOsLJtzUxqt6NePlnWY7noMhm0YG14kpQKq1mVhd_HCV1g0a_RHs_W2va4lwrCX2-nC4Q2pfnJ6iMXVIHnBR8IEHAzYDn9ZM5GLtHUymZiCk6wVMDUdzF-xM58slPbZxDbVG2V1CjyMUgce2TaDff4-WZE75OMeex9grWh0AE4uk4o7pUFqtWl8aM3HQw" />
+          <div className="w-full h-full p-1">
+            <Image src="/28851253856002618.jpg" width={1400} height={5} alt="Banner 1" className="object-cover"/>
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-surface-container via-[rgba(30,31,38,0.8)] to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-surface-container via-[rgba(30,31,38,0.5)] to-transparent"></div>
@@ -45,7 +43,7 @@ export default function Profile() {
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-2">
               <button className="bg-primary text-on-primary font-sans text-sm font-semibold px-6 py-3 rounded border-none shadow-[4px_4px_0_#1e004a] cursor-pointer transition-all duration-200 active:shadow-none active:translate-x-1 active:translate-y-1">Follow</button>
               <button className="bg-transparent text-secondary font-sans text-sm font-semibold px-6 py-3 border-2 border-secondary rounded shadow-[4px_4px_0_var(--color-secondary)] cursor-pointer flex items-center gap-2 transition-all duration-200 hover:bg-[rgba(76,215,246,0.1)] active:shadow-none active:translate-x-1 active:translate-y-1">
-                <span className="material-symbols-outlined text-[18px]">swords</span>
+                <span className="material-symbols-outlined text-[18px]"><Swords/></span>
                 Challenge to Duel
               </button>
             </div>

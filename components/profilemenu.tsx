@@ -36,8 +36,12 @@ export default function ProfileMenu() {
 
       {open && (
         <div className="absolute right-0 mt-2 w-44 bg-black rounded-xl shadow-lg border py-2 z-50">
-          <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer">
+          <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer" >
             Profile
+          </button>
+
+          <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer">
+            Dashboard
           </button>
 
           <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer">
