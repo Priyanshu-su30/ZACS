@@ -13,8 +13,6 @@ model User {
   email         String?  @unique
   emailVerified DateTime?
   image         String?
-
-  // 🔥 Your custom fields
   username   String? @unique
   passwords  String?
   movie      String?
@@ -26,8 +24,6 @@ model User {
   followers  Int     @default(0)
   following  Int     @default(0)
   trophy     String?
-
-  // 🔐 Required for NextAuth
   accounts Account[]
   sessions Session[]
 }

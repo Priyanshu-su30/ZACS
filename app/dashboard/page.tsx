@@ -1,7 +1,8 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
-import { Bell, CirclePlus, CircleUser } from 'lucide-react';
+import { Bell, CirclePlus } from 'lucide-react';
+import ProfileMenu from "@/components/profilemenu";
 
 export default async function Dashboard() {
 
@@ -20,7 +21,7 @@ export default async function Dashboard() {
           <div className="flex items-center gap-4">
           <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95 cursor-pointer"><Bell/></button>
           <button className="material-symbols-outlined text-violet-500 dark:text-violet-400 hover:text-cyan-400 transition-all duration-200 active:scale-95 cursor-pointer"><CirclePlus/></button>
-          <button><CircleUser/></button>
+          <ProfileMenu />
         </div>
       </header>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
