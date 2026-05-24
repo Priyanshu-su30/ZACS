@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Providers from "./providers";
@@ -7,6 +8,24 @@ import Providers from "./providers";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const technor = localFont({
+  src: [
+    {
+      path: "./fonts/Technor-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Technor-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    // Add other weights (Medium, Black, etc.) here if you have them
+  ],
+  variable: "--font-technor",
+  display: "swap", // Ensures text remains visible while the font loads
 });
 
 const geistMono = Geist_Mono({
@@ -27,9 +46,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${technor.variable}`}
+      // {`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="font-technor antialiased bg-black text-white min-h-full flex flex-col">
         <Toaster />
         <Providers>{children}</Providers>
       </body>

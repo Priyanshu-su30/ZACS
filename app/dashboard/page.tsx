@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/navbar";
+import SearchBar from "@/components/searchbar";
 
 export default async function Dashboard() {
 
@@ -43,7 +44,7 @@ export default async function Dashboard() {
         </section>
 
         {/* Grid 2: Active Duels */}
-        <section className="bg-[rgba(30,31,38,0.6)] backdrop-blur-[20px] border border-[rgba(226,225,235,0.1)] rounded-xl p-6 flex flex-col relative overflow-hidden col-span-1 md:col-span-6">
+        <section className="w-full bg-[rgba(30,31,38,0.6)] backdrop-blur-[20px] border border-[rgba(226,225,235,0.1)] rounded-xl p-6 flex flex-col relative overflow-hidden col-span-1 md:col-span-6">
           <div className="flex justify-between items-center border-b border-[rgba(255,255,255,0.1)] pb-4 mb-5">
             <h2 className="font-heading text-[24px] font-semibold text-on-surface flex items-center gap-2">
               <span className="material-symbols-outlined text-primary">bolt</span> Active Duels
@@ -130,8 +131,9 @@ export default async function Dashboard() {
           <div className="flex-grow w-full">
             <label className="font-heading text-[24px] font-semibold text-on-surface flex items-center gap-2 mb-4 block">What did you watch?</label>
             <div className="w-full relative group">
-              <span className="material-symbols-outlined absolute left-0 bottom-3 text-outline transition-colors duration-200 group-focus-within:text-primary">search</span>
-              <input type="text" className="w-full bg-transparent border-b-2 border-outline-variant p-3 pl-8 font-sans text-lg text-on-surface outline-none transition-colors duration-200 focus:border-primary" placeholder="Search film title..." />
+              {/* <span className="material-symbols-outlined absolute left-0 bottom-3 text-outline transition-colors duration-200 group-focus-within:text-primary">search</span> */}
+              <SearchBar/>
+              {/* <input type="text" className="w-full bg-transparent border-b-2 border-outline-variant p-3 pl-8 font-sans text-lg text-on-surface outline-none transition-colors duration-200 focus:border-primary" placeholder="Search film title..." /> */}
             </div>
           </div>
           <button className="w-full md:w-auto bg-primary text-on-primary font-sans text-sm font-semibold uppercase tracking-wider px-8 py-4 rounded-lg shadow-[4px_4px_0_var(--color-primary)] flex items-center justify-center gap-2 cursor-pointer transition-all duration-200 hover:bg-primary-container hover:-translate-y-[2px] active:shadow-none active:translate-x-1 active:translate-y-1 whitespace-nowrap">

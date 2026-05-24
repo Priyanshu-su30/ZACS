@@ -15,15 +15,15 @@ model User {
   image         String?
   username   String? @unique
   passwords  String?
-  movie      String?
-  series     String?
+  movie      String[]
+  series     String[]
   level      Int     @default(0)
   XP         Int     @default(0)
   rank       String?
   watches    Int     @default(0)
   followers  Int     @default(0)
   following  Int     @default(0)
-  trophy     String?
+  trophy     String[]
   accounts Account[]
   sessions Session[]
 }

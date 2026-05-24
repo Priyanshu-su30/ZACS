@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { SquareUser } from "lucide-react";
 import { signOut } from "next-auth/react";
@@ -36,17 +37,23 @@ export default function ProfileMenu() {
 
       {open && (
         <div className="absolute right-0 mt-2 w-44 bg-black rounded-xl shadow-lg border py-2 z-50">
-          <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer" >
-            Profile
-          </button>
-
-          <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer">
-            Dashboard
-          </button>
-
-          <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer">
-            Settings
-          </button>
+          <Link href={"/profile"}>
+            <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer" >
+              Profile
+            </button>
+          </Link>
+          
+          <Link href={"/dashboard"}>
+            <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer" >
+              Dashboard
+            </button>
+          </Link>
+          
+          <Link href={"/settings"}>
+            <button className="w-full text-left px-4 py-2 hover:bg-gray-800 cursor-pointer" >
+              Settings
+            </button>
+          </Link>
 
           <button className="w-full text-left px-4 py-2 hover:bg-gray-800 text-red-500 cursor-pointer" onClick={() => signOut()}>
             Logout

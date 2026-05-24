@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { BadgeCheck, Swords } from "lucide-react";
 import { useSession } from "next-auth/react";
+import Navbar from "@/components/navbar";
 
 export default function Profile() {
     
@@ -9,8 +10,9 @@ export default function Profile() {
 
   return (
     <main className="max-w-[1440px] mx-auto px-4 md:px-6">
+      <Navbar/>
       {/* Profile Header Bento */}
-      <div className="relative w-full border border-[rgba(255,255,255,0.1)] rounded-lg overflow-hidden bg-surface-container flex flex-col md:flex-row shadow-[4px_4px_0_var(--color-surface-container-lowest)] mt-3">
+      <div className="relative w-full border border-[rgba(255,255,255,0.1)] rounded-lg overflow-hidden bg-surface-container flex flex-col md:flex-row shadow-[4px_4px_0_var(--color-surface-container-lowest)] mt-20">
         <div className="absolute inset-0 z-0 opacity-40 mix-blend-luminosity">
           <div className="w-full h-full p-1">
             <Image src="/28851253856002618.jpg" width={1400} height={5} alt="Banner 1" className="object-cover"/>
