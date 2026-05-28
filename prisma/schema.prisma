@@ -8,24 +8,42 @@ datasource db {
 }
 
 model User {
-  id            String   @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String?  @unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
-  username   String? @unique
-  passwords  String?
-  movie      String[]
-  series     String[]
-  level      Int     @default(0)
-  XP         Int     @default(0)
-  rank       String?
-  watches    Int     @default(0)
-  followers  Int     @default(0)
-  following  Int     @default(0)
-  trophy     String[]
-  accounts Account[]
-  sessions Session[]
+  username      String?   @unique
+  passwords     String?
+
+  movie         String[]
+  trophy        String[]
+
+  level         Int       @default(0)
+  XP            Int       @default(0)
+  rank          String?
+  watches       Int       @default(0)
+  followers     Int       @default(0)
+  following     Int       @default(0)
+
+  series        Series[]
+
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Series {
+  id          String   @id @default(cuid())
+
+  tvmazeId    Int      @unique
+  name        String
+  image       String
+  genres      String[]
+  rating      Float?
+  premiered   String?
+
+  userId      String
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
